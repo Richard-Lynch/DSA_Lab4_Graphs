@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Graph_Node.hpp"
+
+class Graph_Node;
 
 class Graph_Edge{
 public:
@@ -10,6 +11,7 @@ public:
 
     Graph_Edge* next_edge;  //the next edge in the linked list
 
-private:
+    Graph_Edge(Graph_Node* Vertex, int Weight, Graph_Edge* Next_edge);
 
-}
+private:
+};
