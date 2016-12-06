@@ -4,6 +4,6 @@
     "version": "0.1.0",
     "command": "g++",
     "isShellCommand": true,
-    "args": ["-o", "demo", "main.cpp", "-g", "-Wall"],
+    "args": ["-o", "demo", "main.cpp", "Graph.cpp", "Graph_Node.cpp", "-g", "-Wall"],
     "showOutput": "always"
 }

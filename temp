@@ -1,0 +1,93 @@
+#include "Graph_Node.hpp"
+
+//managing edges
+bool Graph_Node::add_edge(Graph_Node* connected_vertex, int edge_weight){
+    assert(connected_vertex);
+    //add edge from this to connected
+    Graph_Edge temp = {.vertex = connected_vertex, 
+                            .weight = weight};  //create a new edge for this vertex
+
+    edge_list.push_back(temp);                  //copy in to vector
+    
+    // temp.vertex = connected_vertex;     //the vertex it connects to is the connected vertex
+    // temp.weight = weight;               //the weight of the edge is the given weight
+    // edge_list.push_back(*temp);         //add the edge to the vector     
+
+    //add edge from connected to this
+    Graph_Edge con_temp = {.vertex = this, 
+                            .weight = weight};  //create a new edge
+    connected->edge_list.push_back(con_temp);    //copy in to the vector 
+
+    // Graph_Edge* connected_temp = new Graph_Edge;    //create another edge for the connected vertex
+    // connected_temp.vertex = this;                   //the vertex it connects to is this vertex
+    // connected_temp.weight = weight;                 //the weight is the same weight
+    // connected->edge_list.push_back(*temp);          //add the edge to the vectorop of the connected_vertex list of edges, by pointing its head at it
+}
+    
+    bool Graph_Node::remove_edge(Graph_Node* connected_vertex){
+        assert(connected_vertex);
+        printf("Attempting to erase edge\n");
+        int i = 0;
+        while((edge_list.at(edge_list.begin()+i))->vertex != connected_vertex){
+            i++;
+        }
+        if(edge_list.size() =< i){
+            printf("Edge does not exist from this to connected\n");
+            return false;
+        }
+        edge_list.erase((edge_list.at(edge_list.begin()+i)));
+        printf("Edge from this to connected erased\n");
+
+        //similarly for the connected vertex
+        con_edge_list = connected_vertex->edge_list;
+        int j = 0;
+        while((con_edge_list.at(con_edge_list.begin()+j))->vertex != this){
+            j++;
+        }
+        if(con_edge_list.size() =< j){
+            printf("Edge does not exist from connected to this\n");
+            return false;
+        }
+        con_edge_list.erase((con_edge_list.at(con_edge_list.begin()+i)));
+        printf("Edge from connected to this erased\n");
+        
+    }
+    bool Graph_Node::change_weight_edge(Graph_Node* connected_vertex, int new_edge_weight){
+        assert(connected_vertex);
+        printf("Attempting to edit edge\n");
+        int i = 0;
+        while((edge_list.at(edge_list.begin()+i))->vertex != connected_vertex){
+            i++;
+        }
+        if(edge_list.size() =< i){
+            printf("Edge does not exist from this to connected\n");
+            return false;
+        }
+        (edge_list.at(edge_list.begin()+i))->weight = new_edge_weight;
+        printf("Edge from this to connected edited\n");
+
+        //similarly for the connected vertex
+        con_edge_list = connected_vertex->edge_list;
+        int j = 0;
+        while((con_edge_list.at(con_edge_list.begin()+j))->vertex != this){
+            j++;
+        }
+        if(con_edge_list.size() =< j){
+            printf("Edge does not exist from connected to this\n");
+            return false;
+        }
+        (con_edge_list.at(con_edge_list.begin()+i))->weight = new_edge_weight;
+        printf("Edge from connected to this edited\n");
+        
+        }
+   
+    Graph_Node::Graph_Node(){
+        char data = NULL;
+        //Dijkstra
+        destination = NULL;    //the destination vertex
+        is_permanent = false;         //is a permentant vertex, ie cant be updated
+        parent = NULL;    //the vertex to go to next in the path
+        shortest_path = 99999;         //set to a high number to ensure all other paths are shorter
+        was_check = false;
+    }
+    Graph_Node::~Graph_Node();
