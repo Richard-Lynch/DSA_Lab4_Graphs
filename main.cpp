@@ -5,10 +5,13 @@
 int main(){
     Graph test;
 
+    //add the vertices from A to L
     for(int i = 'A' - 65; i< 'M' - 65; i++){
         test.add_vertex(i+65);
     }
 
+    //add all of the required edges
+    //note:this could have been acheived by reading in from a file or other external source which would be much better for large graphs
     test.add_edge_vertex('A', 'B', 1);
 
     test.add_edge_vertex('B', 'C', 2);
@@ -31,15 +34,17 @@ int main(){
 
     test.add_edge_vertex('J', 'L', 5);
 
+    //print the graph to make sure that all of the vertices and edges have been added correctly
     test.print_graph();
     
-    test.dfs('A', 'C');
-    test.dfs('A', 'E');
+    //Depth First Search
+    test.dfs('A', 'X');//test to a value which isnt in the graph
+    test.dfs('K', 'B');//test between two known values
 
     test.dijkstra('A', 'X');
-    test.dijkstra('A', 'F');
+    test.dijkstra('A', 'J');
 
-    test.print_graph();
+    //test.print_graph();
 
     return 0;
 }

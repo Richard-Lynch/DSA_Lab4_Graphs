@@ -90,9 +90,9 @@ Graph_Node::Graph_Node(){
     data = '\0';
     node_edges = NULL;
     //Dijkstra
-    destination = NULL;    //the destination vertex
+    destination = '\0';    //the destination vertex
     is_permanent = false;         //is a permentant vertex, ie cant be updated
-    parent = NULL;    //the vertex to go to next in the path
+    parent = '\0';    //the vertex to go to next in the path
     shortest_path = 99999;         //set to a high number to ensure all other paths are shorter
     was_checked = false;
 }
@@ -101,9 +101,9 @@ Graph_Node::Graph_Node(char Data){
     data = Data;
     node_edges = NULL;
     //Dijkstra
-    destination = NULL;    //the destination vertex
+    destination = '\0';    //the destination vertex
     is_permanent = false;         //is a permentant vertex, ie cant be updated
-    parent = NULL;    //the vertex to go to next in the path
+    parent = '\0';    //the vertex to go to next in the path
     shortest_path = 99999;         //set to a high number to ensure all other paths are shorter
     was_checked = false;
 }
